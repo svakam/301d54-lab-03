@@ -4,7 +4,7 @@
 // url, title, description goes into section
 // horns are a stretch goal
 
-let animalsArray = [];
+const animalsArray = [];
 
 const keywords = [];
 
@@ -16,7 +16,7 @@ function Animals(animalObj) {
   this.keyword = animalObj.keyword;
   this.horns = animalObj.horns;
 
-  // animalsArray.push(this);
+  animalsArray.push(this);
 }
 
 // render the object
@@ -39,6 +39,7 @@ Animals.prototype.render = function () {
   $newSection.find('img').attr('src', this.image_url);
   $newSection.find('img').attr('alt', this.title);
   $newSection.attr('class', 'animal');
+  $newSection.attr('id', this.keyword);
 
   // put description into section
   $newSection.find('p').text(this.description);
@@ -47,77 +48,68 @@ Animals.prototype.render = function () {
   $('main').append($newSection);
 };
 
-function filterAnimals(animals) {
-  // if a choice is clicked (choice contains keyword),
-  // make note of keyword
-  // hide everything and show the images with the keyword that was clicked on
+let filterAnimals = () => {
+  // select dropdown, and on change of the box's content, hide everything and show only the animals whose keyword matches the clicked keyword
   $('#dropdown').on('change', () => {
+    // disable the Filter by Keyword option every time
+    $('option[value="showall"]').attr('disabled', 'disabled');
+
     $('.animal').hide();
-    // console.log($('#dropdown option[value]'));
-    console.log($('#dropdown option'));
-    console.log($('#dropdown option').length);
-    for (let i = 0; i < $('#dropdown option').length; i++) {
-      console.log($('#dropdown option')[i]);
-      console.log($('#dropdown option')[i].value);
 
-      // animals.forEach(animal => {
-      //   console.log(animal);
-      // });
-    }
+    let clickedKeyword = $('#dropdown')[0].value;
+
+    $(`section[id="${clickedKeyword}"`).show();
   });
+};
 
-  // $('#dropdown').on('change', () => {
-  //   console.log($(`option[value=${keywords}]`));
-  // });
-}
-
-function dropDownMenu(animal) {
+// make drop down menu containing unique keywords
+let dropDownMenu = animal => {
   if (!keywords.includes(animal.keyword)) {
     keywords.push(animal.keyword);
+    console.log(keywords);
+    console.log(animal.keyword);
 
     // make a new option and add keyword
     let $newOption = $(`<option value='${animal.keyword}'>${animal.keyword}</option>`);
+    console.log($newOption);
 
     $('#dropdown').append($newOption);
   }
-}
+};
 
-function pageoneData(){
-  // getting the data and making a new animal object
+// getting the data and making a new animal object
+let pageoneData = () => {
   $.get('./data/page-1.json', animals => {
     animals.forEach(animal => {
       new Animals(animal).render();
       dropDownMenu(animal);
-      filterAnimals(animal);
     });
+    filterAnimals();
   });
-}
+};
 
 // pageoneData();
 
-function pagetwoData(){
-  console.log('i am in pagetwodata');
+let pagetwoData = () => {
   $.get('./data/page-2.json', animals => {
     animals.forEach(animal => {
       new Animals(animal).render();
       dropDownMenu(animal);
-      filterAnimals(animal);
     });
+    filterAnimals();
   });
-}
+};
 
 //index.html button
-$('#indexhtml').on('click', function(){
+$('#switchtopagetwo').on('click', function () {
   event.preventDefault();
   window.location = './pagetwo.html';
-  // pagetwoData();
+  pagetwoData();
 });
 
 //pagetwo.html button
-$('#pagetwobutton').on('click', function(){
+$('#switchtoindex').on('click', function () {
   event.preventDefault();
   window.location = './index.html';
-  // pageoneData();
+  pageoneData();
 });
-
-

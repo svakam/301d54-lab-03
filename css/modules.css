@@ -1,0 +1,58 @@
+h1 {
+  margin: 20px;
+}
+
+#dropdown {
+  margin: 20px;
+}
+
+section.animal {
+  font-family: 'Solway', serif;
+  animation-duration: 1s;
+  animation-name: slide;
+  background-color: lightgreen;
+  border: 3px solid darkgreen;
+  width: 25%;
+  height: 300px;
+  text-align: center;
+  float: left;
+}
+
+@keyframes slide {
+  from {
+    position: relative;
+    top: 10px;
+  }
+
+  to {
+    position: relative;
+    top: 0px;
+  }
+}
+  
+section.animal h2, p {
+  color: darkblue;
+}
+
+section.animal h2 {
+  font-size: 150%;
+  font-weight: bold;
+  margin: 3%;
+}
+  
+section.animal img {
+  height: 50%;
+  margin-top: 5%;
+}
+
+section.animal p {
+  margin-top: 7%;
+  overflow: hidden;
+}
+
+#dropdown, #dropdown > option {
+  background-color: #7ec;
+  color: darkblue;
+  font-style: bold;
+  text-transform: uppercase;
+}

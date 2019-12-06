@@ -1,0 +1,14 @@
+* {
+  font-family: 'Solway', serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+}
+
+footer {
+  clear: both;
+  margin-top: 5%;
+  color: lightgreen;
+}
