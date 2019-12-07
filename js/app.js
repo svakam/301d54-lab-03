@@ -66,12 +66,9 @@ let filterAnimals = () => {
 let dropDownMenu = animal => {
   if (!keywords.includes(animal.keyword)) {
     keywords.push(animal.keyword);
-    console.log(keywords);
-    console.log(animal.keyword);
 
     // make a new option and add keyword
     let $newOption = $(`<option value='${animal.keyword}'>${animal.keyword}</option>`);
-    console.log($newOption);
 
     $('#dropdown').append($newOption);
   }
@@ -100,18 +97,21 @@ let pagetwoData = () => {
   });
 };
 
-//index.html button - on click, change url
-$('#switchtopagetwo').on('click', function () {
-  window.location = 'pagetwo.html';
-});
+if (window.location.pathname === '/index.html') {
+  // when DOM loaded, get data and render
+  $('#indexbody').ready(pageoneData());
 
-// when DOM loaded, get data and render
-$('#pagetwobody').ready(pagetwoData());
+  //index.html button - on click, change url
+  $('#switchtopagetwo').on('click', function () {
+    window.location = 'pagetwo.html';
+  });
+}
+else if (window.location.pathname === '/pagetwo.html') {
+  // when DOM loaded, get data and render
+  $('#pagetwobody').ready(pagetwoData());
 
-//pagetwo.html button
-$('#switchtoindex').on('click', function () {
-  window.location = 'index.html';
-});
-
-// when DOM loaded, get data and render
-$('#indexbody').ready(pageoneData());
+  //pagetwo.html button
+  $('#switchtoindex').on('click', function () {
+    window.location = 'index.html';
+  });
+}

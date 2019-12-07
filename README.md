@@ -6,9 +6,9 @@
 
 1. Start: 9 am
 
-1. Finish:
+1. Finish: 2 days later
 
-1. Actual time needed to complete:
+1. Actual time needed to complete: 2 days later
 
 1. ## Number and name of feature: 2
 
