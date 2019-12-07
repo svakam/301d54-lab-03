@@ -84,9 +84,6 @@ let pageoneData = () => {
     filterAnimals();
   });
 };
-
-// pageoneData();
-
 let pagetwoData = () => {
   $.get('./data/page-2.json', animals => {
     animals.forEach(animal => {
@@ -97,21 +94,30 @@ let pagetwoData = () => {
   });
 };
 
-if (window.location.pathname === '/index.html') {
-  // when DOM loaded, get data and render
-  $('#indexbody').ready(pageoneData());
+console.log(window.location.pathname);
+console.log(window.location.href);
+console.log(window.location);
 
-  //index.html button - on click, change url
-  $('#switchtopagetwo').on('click', function () {
-    window.location = 'pagetwo.html';
-  });
-}
-else if (window.location.pathname === '/pagetwo.html') {
-  // when DOM loaded, get data and render
-  $('#pagetwobody').ready(pagetwoData());
+$(document).ready(function () {
+  if ($('html[id="indexhtml"]')) {
+    // when DOM loaded, get data and render
+    $('#indexbody').ready(pageoneData());
 
-  //pagetwo.html button
-  $('#switchtoindex').on('click', function () {
-    window.location = 'index.html';
-  });
-}
+    //index.html button - on click, change url
+    $('#switchtopagetwo').on('click', function () {
+      window.location = 'pagetwo.html';
+    });
+  }
+});
+
+$(document).ready(function () {
+  if ($('html[id="pagetwohtml"]')) {
+    // when DOM loaded, get data and render
+    $('#pagetwobody').ready(pagetwoData());
+
+    //pagetwo.html button
+    $('#switchtoindex').on('click', function () {
+      window.location = 'index.html';
+    });
+  }
+});
