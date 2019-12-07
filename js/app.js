@@ -1,9 +1,5 @@
 'use strict';
 
-// keyword goes into dropdown
-// url, title, description goes into section
-// horns are a stretch goal
-
 const animalsArray = [];
 
 const keywords = [];
@@ -11,6 +7,7 @@ const keywords = [];
 // constructor for the animal
 function Animals(animalObj) {
   this.title = animalObj.title;
+  // eslint-disable-next-line camelcase
   this.image_url = animalObj.image_url;
   this.description = animalObj.description;
   this.keyword = animalObj.keyword;
@@ -22,7 +19,6 @@ function Animals(animalObj) {
 // render the object
 Animals.prototype.render = function () {
 
-  // render animals on first load
   // get the template
   const photoTemplate = $('#photo-template').html();
 
@@ -48,10 +44,11 @@ Animals.prototype.render = function () {
   $('main').append($newSection);
 };
 
+// select dropdown, and on change of the box's content, hide everything and show only the animals whose keyword matches the clicked keyword
 let filterAnimals = () => {
-  // select dropdown, and on change of the box's content, hide everything and show only the animals whose keyword matches the clicked keyword
   $('#dropdown').on('change', () => {
-    // disable the Filter by Keyword option every time
+
+    // disable the 'Filter by Keyword' option
     $('option[value="default"]').attr('disabled', 'disabled');
 
     $('.animal').hide();
@@ -84,9 +81,6 @@ let pageoneData = () => {
     filterAnimals();
   });
 };
-
-// pageoneData();
-
 let pagetwoData = () => {
   $.get('./data/page-2.json', animals => {
     animals.forEach(animal => {
@@ -97,33 +91,22 @@ let pagetwoData = () => {
   });
 };
 
-console.log(window.location.pathname);
-console.log(window.location.href);
-console.log(window.location);
 
+// if on main page, load page 1 data, else load page 2 data
 if (window.location.pathname.includes('/index.html')) {
-  // when DOM loaded, get data and render
   $('#indexbody').ready(pageoneData());
-
-  //index.html button - on click, change url
   $('#switchtopagetwo').on('click', function () {
     window.location = 'pagetwo.html';
   });
 }
 else if (window.location.pathname.includes('/pagetwo.html')) {
-  // when DOM loaded, get data and render
   $('#pagetwobody').ready(pagetwoData());
-
-  //pagetwo.html button
   $('#switchtoindex').on('click', function () {
     window.location = 'index.html';
   });
 }
 else {
-  // when DOM loaded, get data and render
   $('#indexbody').ready(pageoneData());
-
-  //index.html button - on click, change url
   $('#switchtopagetwo').on('click', function () {
     window.location = 'pagetwo.html';
   });
