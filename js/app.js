@@ -52,7 +52,7 @@ let filterAnimals = () => {
   // select dropdown, and on change of the box's content, hide everything and show only the animals whose keyword matches the clicked keyword
   $('#dropdown').on('change', () => {
     // disable the Filter by Keyword option every time
-    $('option[value="showall"]').attr('disabled', 'disabled');
+    $('option[value="default"]').attr('disabled', 'disabled');
 
     $('.animal').hide();
 
@@ -100,16 +100,18 @@ let pagetwoData = () => {
   });
 };
 
-//index.html button
+//index.html button - on click, change url
 $('#switchtopagetwo').on('click', function () {
-  event.preventDefault();
-  window.location = './pagetwo.html';
-  pagetwoData();
+  window.location = 'pagetwo.html';
 });
+
+// when DOM loaded, get data and render
+$('#pagetwobody').ready(pagetwoData());
 
 //pagetwo.html button
 $('#switchtoindex').on('click', function () {
-  event.preventDefault();
-  window.location = './index.html';
-  pageoneData();
+  window.location = 'index.html';
 });
+
+// when DOM loaded, get data and render
+$('#indexbody').ready(pageoneData());

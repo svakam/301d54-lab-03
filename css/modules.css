@@ -1,5 +1,17 @@
 h1 {
   margin: 20px;
+  animation-duration: 1s;
+  animation-name: fadein;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 #dropdown {
