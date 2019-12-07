@@ -111,3 +111,5 @@ else {
     window.location = 'pagetwo.html';
   });
 }
+
+console.log('test');
