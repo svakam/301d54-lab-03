@@ -50,21 +50,21 @@ let dropDownMenu = () => {
   animalsArray.forEach((animal) => {
     if (!keywords.includes(animal.keyword)) {
       keywords.push(animal.keyword);
-      $('#dropdown').append(animal.handlebarsCompileDropDown());
+      $('#dropdownanimalmenu').append(animal.handlebarsCompileDropDown());
     }
   });
 };
 
 // select dropdown, and on change of the box's content, hide everything and show only the animals whose keyword matches the clicked keyword
 let filterAnimals = () => {
-  $('#dropdown').on('change', () => {
+  $('#dropdownanimalmenu').on('change', () => {
 
     // disable the 'Filter by Keyword' option
     $('option[value="default"]').attr('disabled', 'disabled');
 
     $('.animal').hide();
 
-    let clickedKeyword = $('#dropdown')[0].value;
+    let clickedKeyword = $('#dropdownanimalmenu')[0].value;
 
     $(`section[id="${clickedKeyword}"`).show();
   });
@@ -79,6 +79,7 @@ let pageoneData = () => {
     dropDownMenu();
     renderAnimals();
     filterAnimals();
+    sorterMenu();
   });
 };
 let pagetwoData = () => {
@@ -89,7 +90,58 @@ let pagetwoData = () => {
     dropDownMenu();
     renderAnimals();
     filterAnimals();
+    sorterMenu();
   });
+};
+
+// drop down menu for sorting by horns or by title
+let sorterMenu = () => {
+  $('#sortby').on('change', () => {
+
+    // disable the 'Sort By' option
+    $('option[value="sortby"]').attr('disabled', 'disabled');
+
+    let sortChoice = $('#sortby')[0].value;
+    if (sortChoice === 'sortbyhorns') {
+      sortByHorns(animalsArray);
+    } else if (sortChoice === 'sortbytitle') {
+      sortByTitle(animalsArray);
+    }
+  });
+};
+
+// sort by horns, clear out page, and re-render by sorted
+let sortByHorns = (animalsArray) => {
+  animalsArray.sort((a, b) => {
+    if (a.horns < b.horns) {
+      return -1;
+    } else if (a.horns > b.horns) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  $('main').html('');
+  renderAnimals();
+};
+
+// sort by title, clear out page, and re-render by sorted
+let sortByTitle = (animalsArray) => {
+
+  // disable the 'Sort By' option
+  $('option[value="sortby"]').attr('disabled', 'disabled');
+
+  animalsArray.sort((a, b) => {
+    if (a.title < b.title) {
+      return -1;
+    } else if (a.title > b.title) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  $('main').html('');
+  renderAnimals();
 };
 
 // if on main page, load page 1 data, else load page 2 data

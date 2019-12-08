@@ -20,10 +20,7 @@ button {
 }
 
 div > select {
-  position: -webkit-sticky;
-  position: sticky;
   top: 10px;
-  width: 175px;
   border-radius: 5px;
   outline: none;
 }

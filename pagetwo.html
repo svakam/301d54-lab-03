@@ -15,7 +15,7 @@
   <script type="text/x-handlebars-template" id="animaltemplate">
     <section id="{{ keyword }}" class="animal">
         <h2>{{ title }}</h2>
-        <img src="{{ image_url }}" alt="{{ title }}" id="{{ keyword }}">
+        <img src="{{ image_url }}" alt="{{ title }}" id="{{ keyword }}" id="{{ horns }}">
         <p>{{ description }}</p>
     </section>
   </script>
@@ -29,8 +29,13 @@
   <header>
     <h1>The Gallery of Horns</h1>
     <div>
-      <select id="dropdown">
+      <select id="dropdownanimalmenu">
         <option id="optionanimal" value="default">Filter by Keyword</option>
+      </select>
+      <select id="sortby">
+        <option value="sortby">Sort By...</option>
+        <option value="sortbyhorns">Horns</option>
+        <option value="sortbytitle">Title</option>
       </select>
     </div>
     <button id="switchtoindex" type="button">More Horns</button>
