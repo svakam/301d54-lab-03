@@ -1,7 +1,6 @@
 'use strict';
 
 const animalsArray = [];
-
 const keywords = [];
 
 // constructor for the animal
@@ -16,7 +15,7 @@ function Animals(animalObj) {
   animalsArray.push(this);
 }
 
-Animals.prototype.handlebarsRender = function () {
+Animals.prototype.handlebarsCompileAnimals = function () {
   // 1. get template from HTML
   let template = $('#animaltemplate').html();
 
@@ -27,32 +26,33 @@ Animals.prototype.handlebarsRender = function () {
   return templateRender(this);
 };
 
-// render the object
-Animals.prototype.render = function () {
+// for each instance, compile template and render
+let renderAnimals = () => {
+  animalsArray.forEach((animal) => {
+    $('main').append(animal.handlebarsCompileAnimals());
+  });
+};
 
-  // get the template
-  const photoTemplate = $('#photo-template').html();
+Animals.prototype.handlebarsCompileDropDown = function () {
+  // 1. get template from HTML
+  let template = $('#dropdowntemplate').html();
 
-  // make a new section
-  const $newSection = $('<section></section>');
+  // 2. compile HTML
+  let templateRender = Handlebars.compile(template);
 
-  // set newsection's html content to the template
-  $newSection.html(photoTemplate);
+  // 3. return HTML
+  return templateRender(this);
 
-  // put the title into the section
-  $newSection.find('h2').text(this.title);
+};
 
-  // put the image into the section
-  $newSection.find('img').attr('src', this.image_url);
-  $newSection.find('img').attr('alt', this.title);
-  $newSection.attr('class', 'animal');
-  $newSection.attr('id', this.keyword);
-
-  // put description into section
-  $newSection.find('p').text(this.description);
-
-  // append newsection to parent (main)
-  $('main').append($newSection);
+// make drop down menu containing unique keywords
+let dropDownMenu = () => {
+  animalsArray.forEach((animal) => {
+    if (!keywords.includes(animal.keyword)) {
+      keywords.push(animal.keyword);
+      $('#dropdown').append(animal.handlebarsCompileDropDown());
+    }
+  });
 };
 
 // select dropdown, and on change of the box's content, hide everything and show only the animals whose keyword matches the clicked keyword
@@ -70,38 +70,27 @@ let filterAnimals = () => {
   });
 };
 
-// make drop down menu containing unique keywords
-let dropDownMenu = animal => {
-  if (!keywords.includes(animal.keyword)) {
-    keywords.push(animal.keyword);
-
-    // make a new option and add keyword
-    let $newOption = $(`<option value='${animal.keyword}'>${animal.keyword}</option>`);
-
-    $('#dropdown').append($newOption);
-  }
-};
-
-// getting the data and making a new animal object
+// get data from json files and make object instances
 let pageoneData = () => {
   $.get('./data/page-1.json', animals => {
     animals.forEach(animal => {
-      new Animals(animal).render();
-      dropDownMenu(animal);
+      new Animals(animal);
     });
+    dropDownMenu();
+    renderAnimals();
     filterAnimals();
   });
 };
 let pagetwoData = () => {
   $.get('./data/page-2.json', animals => {
     animals.forEach(animal => {
-      new Animals(animal).render();
-      dropDownMenu(animal);
+      new Animals(animal);
     });
+    dropDownMenu();
+    renderAnimals();
     filterAnimals();
   });
 };
-
 
 // if on main page, load page 1 data, else load page 2 data
 if (window.location.pathname.includes('/index.html')) {
@@ -109,16 +98,15 @@ if (window.location.pathname.includes('/index.html')) {
   $('#switchtopagetwo').on('click', function () {
     window.location = 'pagetwo.html';
   });
-}
-else if (window.location.pathname.includes('/pagetwo.html')) {
+} else if (window.location.pathname.includes('/pagetwo.html')) {
   $('#pagetwobody').ready(pagetwoData());
   $('#switchtoindex').on('click', function () {
     window.location = 'index.html';
   });
-}
-else {
+} else {
   $('#indexbody').ready(pageoneData());
   $('#switchtopagetwo').on('click', function () {
     window.location = 'pagetwo.html';
   });
 }
+
