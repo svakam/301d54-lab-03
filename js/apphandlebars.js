@@ -57,14 +57,14 @@ let dropDownMenu = () => {
 
 // select dropdown, and on change of the box's content, hide everything and show only the animals whose keyword matches the clicked keyword
 let filterAnimals = () => {
-  $('#dropdownanimals').on('change', () => {
+  $('#dropdownanimalmenu').on('change', () => {
 
     // disable the 'Filter by Keyword' option
     $('option[value="default"]').attr('disabled', 'disabled');
 
     $('.animal').hide();
 
-    let clickedKeyword = $('#dropdownanimals')[0].value;
+    let clickedKeyword = $('#dropdownanimalmenu')[0].value;
 
     $(`section[id="${clickedKeyword}"`).show();
   });
