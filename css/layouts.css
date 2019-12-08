@@ -1,8 +1,22 @@
 h1 {
-  text-align: center;
   font-size: 3em;
   color: lightgreen;
   font-family: 'Solway', serif;
+}
+
+header :nth-child(1) {
+  display: flex;
+  justify-content: center;
+}
+
+header :nth-child(2) {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  display: flex;
+  justify-content: center;
 }
 
 div > select {
@@ -14,7 +28,8 @@ div > select {
   outline: none;
 }
 
-footer {
-  position: relative;
-  bottom: 0px;
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

@@ -27,7 +27,6 @@ section.animal {
   width: 25%;
   height: 300px;
   text-align: center;
-  float: left;
 }
 
 @keyframes slide {
@@ -59,7 +58,6 @@ section.animal img {
 
 section.animal p {
   margin-top: 7%;
-  overflow: hidden;
 }
 
 #dropdown, #dropdown > option {
@@ -74,4 +72,10 @@ button {
   border-radius: 5px;
   outline: none;
   padding: 5px;
+}
+
+footer {
+  display: flex;
+  margin-top: 2%;
+  justify-content: flex-end;
 }
