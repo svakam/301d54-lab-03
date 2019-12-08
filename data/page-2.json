@@ -105,7 +105,7 @@
     "horns": 2
   },
   {
-    "image_url": "http://assets.panda.org/img/original/saiga_antelope_wwfwallpaper.jpg",
+    "image_url": "https://assets.panda.org/img/original/saiga_antelope_wwfwallpaper.jpg",
     "title": "Saiga",
     "description": "They're like a camel and an antelope in one",
     "keyword": "saiga",
@@ -119,14 +119,14 @@
     "horns": 2
   },
   {
-    "image_url": "http://www.californiaherps.com/lizards/images/cjacksonimbmale.jpg",
+    "image_url": "https://www.californiaherps.com/lizards/images/cjacksonimbmale.jpg",
     "title": "Jackson's Chameleon",
     "description": "Almost looks like he's smiling. I wouldn't want to get into a fight with him!",
     "keyword": "chameleon",
     "horns": 2
   },
   {
-    "image_url": "http://ichef.bbci.co.uk/wwfeatures/wm/live/1280_640/images/live/p0/37/4s/p0374s1h.jpg",
+    "image_url": "https://ichef.bbci.co.uk/wwfeatures/wm/live/1280_640/images/live/p0/37/4s/p0374s1h.jpg",
     "title": "Horned Lizard",
     "description": "They can shoot blood out of their eyes as a defense mechanism",
     "keyword": "lizard",

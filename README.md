@@ -14,9 +14,9 @@
 
 1. Estimate of time needed to complete:
 
-1. Start:
+1. Start: 3:30pm
 
-1. Finish:
+1. Finish: 5:30pm
 
 1. Actual time needed to complete:
 

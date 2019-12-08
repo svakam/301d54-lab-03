@@ -68,3 +68,10 @@ section.animal p {
   font-style: bold;
   text-transform: uppercase;
 }
+
+button {
+  margin: 20px;
+  border-radius: 5px;
+  outline: none;
+  padding: 5px;
+}
