@@ -26,6 +26,7 @@ Animals.prototype.handlebarsCompileAnimals = function () {
   return templateRender(this);
 };
 
+// for each instance, compile template and render
 let renderAnimals = () => {
   animalsArray.forEach((animal) => {
     $('main').append(animal.handlebarsCompileAnimals());
@@ -69,8 +70,7 @@ let filterAnimals = () => {
   });
 };
 
-// get data from json file and make object instances
-// getting the data and making a new animal object
+// get data from json files and make object instances
 let pageoneData = () => {
   $.get('./data/page-1.json', animals => {
     animals.forEach(animal => {

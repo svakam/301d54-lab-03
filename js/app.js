@@ -25,7 +25,7 @@ Animals.prototype.handlebarsRender = function () {
 
   // 3. return HTML
   return templateRender(this);
-}
+};
 
 // render the object
 Animals.prototype.render = function () {
