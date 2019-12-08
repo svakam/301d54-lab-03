@@ -14,7 +14,7 @@ h1 {
   }
 }
 
-#dropdown {
+#dropdownanimalmenu {
   margin: 20px;
 }
 
@@ -60,7 +60,7 @@ section.animal p {
   margin-top: 7%;
 }
 
-#dropdown, #dropdown > option {
+#dropdownanimalmenu, #sortby, #sortby > option, #dropdownanimalmenu > option {
   background-color: #7ec;
   color: darkblue;
   font-style: bold;
